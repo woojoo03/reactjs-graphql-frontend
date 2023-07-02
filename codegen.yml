@@ -1,0 +1,20 @@
+schema: src/infra/schema.gql
+documents:
+  - src/infra/queries/*.gql
+  - src/infra/mutations/*.gql
+generates:
+  src/infra/codegen.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+  server/codegen.ts:
+    config:
+      useIndexSignature: true
+      contextType: ./models#Context
+      mappers:
+        Post: ./models#UserPost
+        User: ./models#UserModel
+    plugins:
+      - typescript
+      - typescript-resolvers
