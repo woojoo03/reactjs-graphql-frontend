@@ -47,6 +47,8 @@ components/ - react components
 
 pages/ - most of them are also containers
 
+routes/ - routes configuration
+
 
 #### MODEL ####
 
@@ -54,17 +56,17 @@ interactions/ - interaction(application) logics
 
 hooks/ - shared custom hooks
 
+types/ - type aliases
+
 
 #### ETC ####
 
-infra/ - state management and communicating with server-side
-
 providers/ - application providers
 
-types/ - type aliases
+infra/ - state management and communicating with server-side
 
 utils/ - shared utility functions
 
-routes/ - routes configuration
+assets/ - images, fonts, css, json...
 
 ```
