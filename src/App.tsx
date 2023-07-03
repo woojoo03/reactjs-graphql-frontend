@@ -1,12 +1,7 @@
-import { AppProvider } from "@/providers/AppProvider";
+import { AppProvider } from '@/providers/AppProvider';
 
 // NextJS 처럼 라우팅..
-import {
-  createBrowserRouter,
-  RouterProvider,
-  LoaderFunction,
-  ActionFunction,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, LoaderFunction, ActionFunction } from 'react-router-dom';
 import './App.css';
 
 interface RouteCommon {
@@ -26,19 +21,17 @@ interface Pages {
   } & RouteCommon;
 }
 
-const pages: Pages = import.meta.glob("./pages/**/*.tsx", { eager: true });
+const pages: Pages = import.meta.glob('./pages/**/*.tsx', { eager: true });
 const routes: IRoute[] = [];
 
 for (const path of Object.keys(pages)) {
   const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
   if (!fileName) continue;
 
-  const normalizedPathName = fileName.includes("$")
-      ? fileName.replace("$", ":")
-      : fileName.replace(/\/index/, "");
+  const normalizedPathName = fileName.includes('$') ? fileName.replace('$', ':') : fileName.replace(/\/index/, '');
 
   routes.push({
-    path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
+    path: fileName === 'index' ? '/' : `/${normalizedPathName.toLowerCase()}`,
     Element: pages[path].default,
     loader: pages[path]?.loader as LoaderFunction | undefined,
     action: pages[path]?.action as ActionFunction | undefined,
@@ -60,4 +53,4 @@ const App = () => (
   </AppProvider>
 );
 
-export default App
+export default App;

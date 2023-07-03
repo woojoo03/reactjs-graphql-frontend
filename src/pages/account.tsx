@@ -1,5 +1,5 @@
-import { useAuth, useUser } from "@/interactions";
-import { AccountSection } from "@/components/sections";
+import { useAuth, useUser } from '@/interactions';
+import { AccountSection } from '@/components/sections';
 
 export default function Account() {
   const { operations: authOperations } = useAuth();
@@ -9,11 +9,5 @@ export default function Account() {
 
   const id = 0;
 
-  return (
-      <AccountSection
-          actions={{ signOut, changePassword }}
-          id={id}
-          error={error}
-      />
-  );
-};
+  return <AccountSection actions={{ signOut, changePassword }} id={id} error={error} />;
+}
