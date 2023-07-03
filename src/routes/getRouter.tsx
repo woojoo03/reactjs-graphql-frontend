@@ -1,5 +1,6 @@
 import { ActionFunction, createBrowserRouter, LoaderFunction } from 'react-router-dom';
 import { Error404 } from '@/components/sections/Error404';
+import { AuthGuardLayout, PrivateRoute } from '@/components/layouts';
 
 export interface RouteCommon {
   loader?: LoaderFunction;
@@ -38,10 +39,20 @@ export const getRouter = (pages: Pages) => {
   console.log('routes :', routes);
 
   return createBrowserRouter(
-    routes.map(({ Element, ErrorBoundary, ...rest }) => ({
-      ...rest,
-      element: <Element />,
-      errorElement: <Error404 id={0} loading={true} />,
-    }))
+    routes.map(({ Element, ErrorBoundary, ...rest }) => {
+      console.log('path :', rest.path);
+
+      let element = <AuthGuardLayout><Element/></AuthGuardLayout>;
+      // 로그인 필요없는 페이지..
+      if (rest.path === '/login') {
+        element = <PrivateRoute><Element/></PrivateRoute>;
+      }
+
+      return {
+        ...rest,
+        element: element,
+        errorElement: <Error404 id={0} loading={true}/>,
+      };
+    })
   );
 };
