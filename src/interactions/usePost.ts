@@ -1,16 +1,17 @@
-import { MutationCreatePostArgs } from "@/infra/codegen";
-import { usePostOperations } from "@/infra/operations/usePostOperations";
-import { User } from "@/types";
+import { MutationCreatePostArgs } from '@/infra/codegen';
+import { useMockPostOperations as usePostOperations } from '@/infra/operations/useMockPostOperations';
+import { User } from '@/types/models';
 
 export const usePost = () => {
-  const { mutations } = usePostOperations();
-  const postOnThread = async (
-      args: MutationCreatePostArgs,
-      user: User,
-      queryName: "fetchUserByToken" | "fetchUserByEmail"
-  ) => {
-    await mutations.createPost(args, user, queryName);
-  };
+	const { mutations } = usePostOperations();
 
-  return { operations: { postOnThread } };
+	const postOnThread = async (
+		args: MutationCreatePostArgs,
+		user: User,
+		queryName: 'fetchUserByToken' | 'fetchUserByEmail',
+	) => {
+		await mutations.createPost(args, user, queryName);
+	};
+
+	return { operations: { postOnThread } };
 };

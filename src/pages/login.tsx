@@ -1,14 +1,9 @@
-import { Link } from 'react-router-dom';
+import { useAuth } from '@/interactions';
+import { LoginSection } from '@/components/sections/auth';
 
-export default function Pages() {
-  return (
-    <>
-      Login Pages
-      <br />
-      <Link to="/login">Login</Link>
-      <br />
-      <Link to="/join">Join</Link>
-      <br />
-    </>
-  );
+export default function Login() {
+	const { error, operations } = useAuth();
+	const { login } = operations;
+
+	return <LoginSection actions={{ login }} error={error} />;
 }

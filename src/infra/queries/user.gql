@@ -1,0 +1,33 @@
+query FetchUserByToken {
+    fetchUserByToken {
+        id
+        email
+        country
+        city
+        nickName
+        posts {
+            id
+            body
+            createdAt
+            senderEmail
+            date @client
+        }
+    }
+}
+
+query FetchUserByEmail($email: String!) {
+    fetchUserByEmail(email: $email) {
+        id
+        email
+        country
+        city
+        nickName
+        posts {
+            id
+            body
+            createdAt
+            senderEmail
+            date @client
+        }
+    }
+}

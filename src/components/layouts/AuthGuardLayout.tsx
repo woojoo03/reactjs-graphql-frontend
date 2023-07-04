@@ -1,25 +1,19 @@
-import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-//import { Spinner } from '@/components/elements/Spinner';
+import { authStore } from '@/infra/stores/authStore';
+import { useAuth } from '@/interactions';
+import { Spinner } from '@/components/elements/Spinner';
+import { useReactiveVar } from '@apollo/client';
 
 interface AuthGuardLayoutProps {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }
 
 export const AuthGuardLayout: React.FC<AuthGuardLayoutProps> = ({ children }) => {
-  const [userProfile, setUserProfile] = useState<string | null>(null);
+	const { loading } = useAuth();
+	const loginId = useReactiveVar(authStore);
+	console.log('AuthGuardLayout : loginId :', loginId);
 
-  useEffect(() => {
-    setUserProfile("Guest");
-  }, []);
-  console.log('userProfile :', userProfile);
+	if (loading) return <Spinner />;
 
-  // 유저 정보 확인 로직
-  //if (userProfile === null) return <Spinner />;
-
-  return userProfile ? (
-      <>{children}</>
-  ) : (
-      <Navigate to="/login" />
-  );
+	return loginId ? <>{children}</> : <Navigate to="/login" />;
 };

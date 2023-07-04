@@ -1,6 +1,10 @@
 {
-  "printWidth": 120,
+  "extends": "eslint:recommended",
+  "tabWidth": 2,
+  "useTabs": true,
   "singleQuote": true,
-  "trailingComma": "es5",
-  "tabWidth": 2
+  "trailingComma": "all",
+  "semi": true,
+  "printWidth": 120,
+  "endOfLine": "auto"
 }

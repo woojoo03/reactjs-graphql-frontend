@@ -1,4 +1,4 @@
-export * from "./AccountSection";
-export * from "./ProfileSection";
-// export * from "./LoginSection";
-// export * from "./SignUpSection";
+export * from './main';
+export * from './auth';
+export * from './user';
+export * from './error';

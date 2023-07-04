@@ -1,14 +1,9 @@
-import { Link } from 'react-router-dom';
+import { useAuth } from '@/interactions';
+import { SignUpSection } from '@/components/sections/auth';
 
-export default function Pages() {
-  return (
-    <>
-      Join Pages
-      <br />
-      <Link to="/login">Login</Link>
-      <br />
-      <Link to="/join">Join</Link>
-      <br />
-    </>
-  );
+export default function Join() {
+	const { error, operations } = useAuth();
+	const { signUp } = operations;
+
+	return <SignUpSection actions={{ signUp }} error={error} />;
 }

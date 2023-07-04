@@ -1,0 +1,33 @@
+mutation UpdateTokenByLogin($email: String!, $password: String!) {
+    updateTokenByLogin(email: $email, password: $password)
+}
+
+mutation CreateUser(
+    $email: String!
+    $password: String!
+    $country: String!
+    $city: String!
+    $nickName: String!
+) {
+    createUser(
+        email: $email
+        password: $password
+        country: $country
+        city: $city
+        nickName: $nickName
+    ) {
+        token
+    }
+}
+
+mutation UpdatePassword(
+    $oldPassword: String!
+    $newPassword: String!
+    $id: Int!
+) {
+    updatePassword(oldPassword: $oldPassword, newPassword: $newPassword, id: $id)
+}
+
+mutation UpdateTokenToNull($id: Int!) {
+    updateTokenToNull(id: $id)
+}
