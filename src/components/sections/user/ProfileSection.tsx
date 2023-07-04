@@ -6,6 +6,8 @@ import { theme } from '@/utils/theme';
 import { Posts } from '@/components/post';
 import { PostOnThread } from '@/types/async';
 import { User } from '@/types/models';
+import { userStore } from '@/infra/stores/authStore';
+import { useReactiveVar } from '@apollo/client';
 
 type Props = {
 	user: User;
@@ -15,6 +17,9 @@ type Props = {
 };
 
 export const ProfileSection: React.FC<Props> = ({ user, actions }) => {
+	const userInfo = useReactiveVar(userStore);
+	console.log('ProfileSection : userInfo :', userInfo);
+
 	return (
 		<ThreadLayout page="Profile">
 			<Box pt={theme.m.md}>

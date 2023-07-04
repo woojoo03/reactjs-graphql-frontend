@@ -21,6 +21,7 @@ export const useMockPostOperations: () => { mutations: Mutations } = () => {
 
 		const newUser = {
 			...user,
+			nickname: user.nickName + '!',
 			posts: [
 				{
 					body: args.body,
