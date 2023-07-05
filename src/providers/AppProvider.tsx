@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { IconContext } from 'react-icons';
 import { ApolloProvider } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -13,7 +13,7 @@ type Props = {
 	children: React.ReactNode;
 };
 
-export const AppProvider = ({ children }: Props) => {
+export const AppProvider = React.memo(({ children }: Props) => {
 	const { client } = useClient();
 
 	return (
@@ -29,4 +29,4 @@ export const AppProvider = ({ children }: Props) => {
 			</ChakraProvider>
 		</Suspense>
 	);
-};
+});

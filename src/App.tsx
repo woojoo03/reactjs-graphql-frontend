@@ -5,13 +5,15 @@ import './App.css';
 
 // ----------------------------------------------------------------------
 
-const pages: Pages = import.meta.glob('./pages/**/*.tsx', { eager: true });
-const router = getRouter(pages);
+const App = () => {
+	const pages: Pages = import.meta.glob('./pages/**/*.tsx', { eager: true });
+	const router = getRouter(pages);
 
-const App = () => (
-	<AppProvider>
-		<RouterProvider router={router} />
-	</AppProvider>
-);
+	return (
+		<AppProvider>
+			<RouterProvider router={router} />
+		</AppProvider>
+	);
+};
 
 export default App;

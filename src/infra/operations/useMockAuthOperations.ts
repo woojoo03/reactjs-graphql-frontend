@@ -67,11 +67,9 @@ export const useMockAuthOperations: () => {
 	}
 
 	useEffect(() => {
-		console.log('++++++++++++++++++++++++++++++');
-		console.log(typeof settingContext.toggleTheme);
-		console.log('++++++++++++++++++++++++++++++');
 		if (typeof settingContext.toggleTheme === 'function') {
 			settingContext.toggleTheme();
+			console.log('settingContext.toggleTheme() ++++++++++++++++++++++++++++++');
 		}
 	}, []);
 
