@@ -10,6 +10,8 @@ import { userStore } from '@/infra/stores/authStore';
 import { useReactiveVar } from '@apollo/client';
 import { Link } from 'react-router-dom';
 
+// ----------------------------------------------------------------------
+
 type Props = {
 	user: User;
 	actions: {

@@ -6,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Login } from '@/types/async';
 import useSettingContext from '@/hooks/useSettingContext';
 
+// ----------------------------------------------------------------------
+
 type Input = {
 	actions: {
 		login: Login;
@@ -55,6 +57,8 @@ const useLogin = ({ actions }: Input) => {
 		operations: { handleFormInput, handleLogin, handleSignUp },
 	};
 };
+
+// ----------------------------------------------------------------------
 
 type Props = {
 	actions: {

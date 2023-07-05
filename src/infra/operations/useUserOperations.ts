@@ -6,6 +6,8 @@ import {
 } from '@/infra/codegen';
 import { User } from '@/types/models';
 
+// ----------------------------------------------------------------------
+
 type Models = {
 	user: User | undefined;
 };

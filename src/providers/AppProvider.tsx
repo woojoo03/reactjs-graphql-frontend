@@ -7,6 +7,8 @@ import useClient from '@/hooks/useClient';
 import { SettingProvider, UserProvider } from '@/providers/ContextProvider';
 import { defaultCookieSettings } from '@/config';
 
+// ----------------------------------------------------------------------
+
 type Props = {
 	children: React.ReactNode;
 };

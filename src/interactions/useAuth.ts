@@ -5,45 +5,47 @@ import { passwordValidation } from '@/utils/passwordValidation';
 import { inputValidation } from '@/utils/inputValidation';
 import { useMockAuthOperations as useAuthOperations } from '@/infra/operations/useMockAuthOperations';
 
+// ----------------------------------------------------------------------
+
 export const useAuth = () => {
-  const [error, setError] = useState('');
-  const { user, loading, mutations } = useAuthOperations();
+	const [error, setError] = useState('');
+	const { user, loading, mutations } = useAuthOperations();
 
-  const login = async (args: MutationUpdateTokenByLoginArgs) => {
-    const emailError = emailValidation(args.email);
-    const passwordError = passwordValidation(args.password);
-    const errorMessage = emailError || passwordError;
+	const login = async (args: MutationUpdateTokenByLoginArgs) => {
+		const emailError = emailValidation(args.email);
+		const passwordError = passwordValidation(args.password);
+		const errorMessage = emailError || passwordError;
 
-    if (errorMessage) {
-      setError(errorMessage);
-      return;
-    }
+		if (errorMessage) {
+			setError(errorMessage);
+			return;
+		}
 
-    await mutations.updateTokenByLogin(args);
-  };
+		await mutations.updateTokenByLogin(args);
+	};
 
-  const signUp = async (args: MutationCreateUserArgs) => {
-    const inputError = inputValidation(args);
-    const emailError = emailValidation(args.email);
-    const passwordError = passwordValidation(args.password);
-    const errorMessage = inputError || emailError || passwordError;
+	const signUp = async (args: MutationCreateUserArgs) => {
+		const inputError = inputValidation(args);
+		const emailError = emailValidation(args.email);
+		const passwordError = passwordValidation(args.password);
+		const errorMessage = inputError || emailError || passwordError;
 
-    if (errorMessage) {
-      setError(errorMessage);
-      return;
-    }
+		if (errorMessage) {
+			setError(errorMessage);
+			return;
+		}
 
-    await mutations.createUser(args);
-  };
+		await mutations.createUser(args);
+	};
 
-  const signOut = async (args: MutationUpdateTokenToNullArgs) => {
-    await mutations.updateTokenToNull(args);
-  };
+	const signOut = async (args: MutationUpdateTokenToNullArgs) => {
+		await mutations.updateTokenToNull(args);
+	};
 
-  return {
-    models: { user },
-    operations: { signUp, signOut, login },
-    loading,
-    error,
-  };
+	return {
+		models: { user },
+		operations: { signUp, signOut, login },
+		loading,
+		error,
+	};
 };

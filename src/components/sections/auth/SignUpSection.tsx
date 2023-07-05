@@ -5,6 +5,8 @@ import { theme } from '@/utils/theme';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignUp } from '@/types/async';
 
+// ----------------------------------------------------------------------
+
 type Input = {
 	actions: {
 		signUp: SignUp;
@@ -69,6 +71,8 @@ const useSignUp = ({ actions }: Input) => {
 		operations: { handleFormInput, handleRegister, handleLogin },
 	};
 };
+
+// ----------------------------------------------------------------------
 
 type Props = {
 	actions: {

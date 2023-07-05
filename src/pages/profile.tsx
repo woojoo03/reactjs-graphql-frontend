@@ -2,6 +2,8 @@ import { useAuth, usePost } from '@/interactions';
 import { Spinner } from '@/components/elements';
 import { ProfileSection } from '@/components/sections/user';
 
+// ----------------------------------------------------------------------
+
 export default function Profile() {
 	const { models, loading } = useAuth();
 	const { operations } = usePost();

@@ -4,6 +4,8 @@ import { User } from '@/types/models/User';
 import storage from '@/utils/storage';
 import useUserContext from '@/hooks/useUserContext';
 
+// ----------------------------------------------------------------------
+
 type Mutations = {
 	updateTokenByLogin: (args: MutationUpdateTokenByLoginArgs) => Promise<void>;
 	createUser: (args: MutationCreateUserArgs) => Promise<void>;

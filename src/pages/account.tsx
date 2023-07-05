@@ -1,6 +1,8 @@
 import { useAuth, useUser } from '@/interactions';
 import { AccountSection } from '@/components/sections/user';
 
+// ----------------------------------------------------------------------
+
 export default function Account() {
 	const { operations: authOperations } = useAuth();
 	const { error, operations: userOperations } = useUser();

@@ -3,6 +3,8 @@ import { MutationUpdatePasswordArgs, QueryFetchUserByEmailArgs } from '@/infra/c
 import { useMockUserOperations as useUserOperations } from '@/infra/operations/useMockUserOperations';
 import { passwordValidation } from '@/utils/passwordValidation';
 
+// ----------------------------------------------------------------------
+
 export const useUser = () => {
 	const [error, setError] = useState('');
 	const { models, queries, mutations } = useUserOperations();

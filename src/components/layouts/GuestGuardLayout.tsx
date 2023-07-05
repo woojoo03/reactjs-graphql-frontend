@@ -5,16 +5,19 @@ import { useEffect } from 'react';
 import { useReactiveVar } from '@apollo/client';
 import { authStore } from '@/infra/stores/authStore';
 
-interface PrivateRouteProps {
+// ----------------------------------------------------------------------
+
+interface GuestGuardLayoutProps {
 	children: React.ReactNode;
 }
 
-export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
+export const GuestGuardLayout: React.FC<GuestGuardLayoutProps> = ({ children }) => {
 	const navigate = useNavigate();
 	const { models, loading } = useAuth();
 	const loginId = useReactiveVar(authStore);
-	console.log('PrivateRoute : useReactiveVar :', loginId);
+	console.log('GuestGuardLayout : useReactiveVar :', loginId);
 
+	// 인증된 사용자 자동 메인 페이지 이동
 	useEffect(() => {
 		if (models.user) navigate('/');
 	}, [models.user]);

@@ -1,6 +1,8 @@
 import { ActionFunction, createBrowserRouter, LoaderFunction } from 'react-router-dom';
 import { Error404 } from '@/components/sections/error/Error404';
-import { AuthGuardLayout, PrivateRoute } from '@/components/layouts';
+import { AuthGuardLayout, GuestGuardLayout } from '@/components/layouts';
+
+// ----------------------------------------------------------------------
 
 export interface RouteCommon {
 	loader?: LoaderFunction;
@@ -19,8 +21,11 @@ export interface Pages {
 	} & RouteCommon;
 }
 
-// 로그인 필요 없는 페이지 경로
+/** 로그인 필요 없는 페이지 경로 **/
+
 const publicPages = ['/login', '/join'];
+
+/** NextJS 라우팅 로직 구현 - pages 안의 파일을 자동 라우팅 처리.. **/
 
 export const getRouter = (pages: Pages) => {
 	console.log('getRouter --------------------------------------------');
@@ -42,6 +47,7 @@ export const getRouter = (pages: Pages) => {
 	}
 	console.log('routes :', routes);
 
+	// 인증 필요 or 불 필요 페이지 구분, 자동 페이지 이동 처리
 	return createBrowserRouter(
 		routes.map(({ Element, ErrorBoundary, ...rest }) => {
 			let element;
@@ -53,9 +59,9 @@ export const getRouter = (pages: Pages) => {
 			// 로그인 필요 없는 페이지..
 			else if (publicPages.indexOf(rest.path) > -1) {
 				element = (
-					<PrivateRoute>
+					<GuestGuardLayout>
 						<Element />
-					</PrivateRoute>
+					</GuestGuardLayout>
 				);
 			}
 			// 로그인 필요한 페이지..

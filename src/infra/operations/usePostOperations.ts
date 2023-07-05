@@ -7,6 +7,8 @@ import {
 import { cache } from '@/infra/stores/cache';
 import { User } from '@/types/models';
 
+// ----------------------------------------------------------------------
+
 type Mutations = {
 	createPost: (
 		args: MutationCreatePostArgs,

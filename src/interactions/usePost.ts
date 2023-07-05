@@ -2,6 +2,8 @@ import { MutationCreatePostArgs } from '@/infra/codegen';
 import { useMockPostOperations as usePostOperations } from '@/infra/operations/useMockPostOperations';
 import { User } from '@/types/models';
 
+// ----------------------------------------------------------------------
+
 export const usePost = () => {
 	const { mutations } = usePostOperations();
 

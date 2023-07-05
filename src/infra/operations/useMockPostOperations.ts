@@ -1,6 +1,8 @@
 import { MutationCreatePostArgs } from '@/infra/codegen';
 import { User } from '@/types/models';
 
+// ----------------------------------------------------------------------
+
 type Mutations = {
 	createPost: (
 		args: MutationCreatePostArgs,

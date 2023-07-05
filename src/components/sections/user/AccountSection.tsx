@@ -8,6 +8,8 @@ import useCustomToast from '@/hooks/useCustomToast';
 import useUserContext from '@/hooks/useUserContext';
 import { Link } from 'react-router-dom';
 
+// ----------------------------------------------------------------------
+
 type Input = {
 	id: number;
 	actions: {
@@ -60,6 +62,8 @@ const useAccount = ({ id, actions }: Input) => {
 		operations: { handleFormInput, handleUpdatePassword, handleSignOut },
 	};
 };
+
+// ----------------------------------------------------------------------
 
 type Props = {
 	id: number;

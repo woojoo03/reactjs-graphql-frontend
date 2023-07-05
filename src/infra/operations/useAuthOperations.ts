@@ -12,6 +12,8 @@ import { authStore, userStore } from '@/infra/stores/authStore';
 import { User } from '@/types/models/User';
 import storage from '@/utils/storage';
 
+// ----------------------------------------------------------------------
+
 type Mutations = {
 	updateTokenByLogin: (args: MutationUpdateTokenByLoginArgs) => Promise<void>;
 	createUser: (args: MutationCreateUserArgs) => Promise<void>;
