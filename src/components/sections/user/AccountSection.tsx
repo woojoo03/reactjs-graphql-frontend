@@ -5,6 +5,7 @@ import { ThreadLayout } from '@/components/layouts';
 import { Form } from '@/components/form';
 import { ChangePassword, SignOut } from '@/types/async';
 import useCustomToast from '@/hooks/useCustomToast';
+import useUserContext from '@/hooks/useUserContext';
 
 type Input = {
 	id: number;
@@ -70,6 +71,10 @@ type Props = {
 
 export const AccountSection: React.FC<Props> = ({ id, actions, error }) => {
 	const { models, operations } = useAccount({ id, actions });
+	const user = useUserContext();
+
+	console.log('AccountSection : user :', user);
+
 	return (
 		<ThreadLayout page="Account">
 			<Box w={theme.w.mobile}>

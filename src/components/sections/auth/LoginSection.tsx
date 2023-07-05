@@ -4,6 +4,7 @@ import { Form } from '@/components/form';
 import { theme } from '@/utils/theme';
 import { useNavigate } from 'react-router-dom';
 import { Login } from '@/types/async';
+import useSettingContext from '@/hooks/useSettingContext';
 
 type Input = {
 	actions: {
@@ -64,7 +65,10 @@ type Props = {
 };
 
 export const LoginSection: React.FC<Props> = ({ actions, error }) => {
+	const setting = useSettingContext();
 	const { models, operations } = useLogin({ actions });
+
+	console.log('====>', setting);
 
 	return (
 		<Center h={theme.h.full}>
