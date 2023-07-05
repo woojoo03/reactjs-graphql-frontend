@@ -1,6 +1,6 @@
 import { ActionFunction, createBrowserRouter, LoaderFunction } from 'react-router-dom';
 import { Error404 } from '@/components/sections/error/Error404';
-import { AuthGuardLayout, GuestGuardLayout } from '@/components/layouts';
+import { AuthGuard, GuestGuard } from '@/routes';
 
 // ----------------------------------------------------------------------
 
@@ -59,17 +59,17 @@ export const getRouter = (pages: Pages) => {
 			// 로그인 필요 없는 페이지..
 			else if (publicPages.indexOf(rest.path) > -1) {
 				element = (
-					<GuestGuardLayout>
+					<GuestGuard>
 						<Element />
-					</GuestGuardLayout>
+					</GuestGuard>
 				);
 			}
 			// 로그인 필요한 페이지..
 			else {
 				element = (
-					<AuthGuardLayout>
+					<AuthGuard>
 						<Element />
-					</AuthGuardLayout>
+					</AuthGuard>
 				);
 			}
 

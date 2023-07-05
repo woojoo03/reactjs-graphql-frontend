@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/interactions';
+import { useNavigate } from 'react-router-dom';
 import { Spinner } from '@/components/elements/Spinner';
 import { useEffect } from 'react';
 import { useReactiveVar } from '@apollo/client';
@@ -7,19 +7,19 @@ import { authStore } from '@/infra/stores/authStore';
 
 // ----------------------------------------------------------------------
 
-interface AuthGuardLayoutProps {
+interface GuestGuardProps {
 	children: React.ReactNode;
 }
 
-export const AuthGuardLayout: React.FC<AuthGuardLayoutProps> = ({ children }) => {
+export const GuestGuard: React.FC<GuestGuardProps> = ({ children }) => {
 	const navigate = useNavigate();
 	const { models, loading } = useAuth();
 	const loginId = useReactiveVar(authStore);
-	console.log('AuthGuardLayout : useReactiveVar :', loginId);
+	console.log('GuestGuard : useReactiveVar :', loginId);
 
-	// 인증 안된 사용자 자동 로그인 페이지 이동
+	// 인증된 사용자 자동 메인 페이지 이동
 	useEffect(() => {
-		if (!models.user) navigate('/login');
+		if (models.user) navigate('/');
 	}, [models.user]);
 
 	if (loading) return <Spinner />;
