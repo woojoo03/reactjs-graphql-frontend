@@ -14,7 +14,7 @@ type UserContextProps = {
 	accessToken: string;
 	refreshToken: string;
 	// Actions
-	update?: (userInfo: UserInfo) => void;
+	update?: (userInfo: UserInfo) => void | undefined;
 };
 
 const UserContext = createContext<UserContextProps>({
@@ -25,9 +25,7 @@ const UserContext = createContext<UserContextProps>({
 	accessToken: '',
 	refreshToken: '',
 	// Actions
-	update: (userInfo: UserInfo) => {
-		console.log(userInfo);
-	},
+	update: undefined,
 });
 
 type UsersProviderProps = {

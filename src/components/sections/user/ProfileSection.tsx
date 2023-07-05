@@ -9,6 +9,8 @@ import { User } from '@/types/models';
 import { userStore } from '@/infra/stores/authStore';
 import { useReactiveVar } from '@apollo/client';
 import { Link } from 'react-router-dom';
+import useSettingContext from '@/hooks/useSettingContext';
+import useUserContext from '@/hooks/useUserContext';
 
 // ----------------------------------------------------------------------
 
@@ -20,6 +22,10 @@ type Props = {
 };
 
 export const ProfileSection: React.FC<Props> = ({ user, actions }) => {
+	const setting = useSettingContext();
+	console.log('ProfileSection : useSettingContext :', setting);
+	const userContext = useUserContext();
+	console.log('ProfileSection : useUserContext :', userContext);
 	const userInfo = useReactiveVar(userStore);
 	console.log('ProfileSection : useReactiveVar :', userInfo);
 

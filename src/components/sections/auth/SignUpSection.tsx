@@ -4,6 +4,10 @@ import { Form } from '@/components/form';
 import { theme } from '@/utils/theme';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignUp } from '@/types/async';
+import useSettingContext from '@/hooks/useSettingContext';
+import useUserContext from '@/hooks/useUserContext';
+import { useReactiveVar } from '@apollo/client';
+import { userStore } from '@/infra/stores/authStore';
 
 // ----------------------------------------------------------------------
 
@@ -83,6 +87,12 @@ type Props = {
 
 export const SignUpSection: React.FC<Props> = ({ actions, error }) => {
 	const { models, operations } = useSignUp({ actions });
+	const setting = useSettingContext();
+	console.log('SignUpSection : useSettingContext :', setting);
+	const userContext = useUserContext();
+	console.log('SignUpSection : useUserContext :', userContext);
+	const userInfo = useReactiveVar(userStore);
+	console.log('SignUpSection : useReactiveVar :', userInfo);
 
 	return (
 		<Center h={theme.h.full}>
@@ -99,6 +109,10 @@ export const SignUpSection: React.FC<Props> = ({ actions, error }) => {
 					<Center>
 						<Text cursor={'pointer'} mb={theme.m.sm} borderBottom={theme.border} onClick={operations.handleLogin}>
 							Login
+						</Text>
+						<div>&nbsp;</div>
+						<Text cursor={'pointer'} mb={theme.m.sm} borderBottom={theme.border} onClick={setting.toggleTheme}>
+							ThemeChange
 						</Text>
 					</Center>
 				</Layout>

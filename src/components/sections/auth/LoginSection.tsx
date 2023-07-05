@@ -5,6 +5,9 @@ import { theme } from '@/utils/theme';
 import { Link, useNavigate } from 'react-router-dom';
 import { Login } from '@/types/async';
 import useSettingContext from '@/hooks/useSettingContext';
+import useUserContext from '@/hooks/useUserContext';
+import { useReactiveVar } from '@apollo/client';
+import { userStore } from '@/infra/stores/authStore';
 
 // ----------------------------------------------------------------------
 
@@ -71,6 +74,10 @@ export const LoginSection: React.FC<Props> = ({ actions, error }) => {
 	const { models, operations } = useLogin({ actions });
 	const setting = useSettingContext();
 	console.log('LoginSection : useSettingContext :', setting);
+	const userContext = useUserContext();
+	console.log('LoginSection : useUserContext :', userContext);
+	const userInfo = useReactiveVar(userStore);
+	console.log('LoginSection : useReactiveVar :', userInfo);
 
 	return (
 		<Center h={theme.h.full}>
@@ -87,6 +94,10 @@ export const LoginSection: React.FC<Props> = ({ actions, error }) => {
 					<Center>
 						<Text cursor={'pointer'} mb={theme.m.sm} borderBottom={theme.border} onClick={operations.handleSignUp}>
 							Sign up
+						</Text>
+						<div>&nbsp;</div>
+						<Text cursor={'pointer'} mb={theme.m.sm} borderBottom={theme.border} onClick={setting.toggleTheme}>
+							ThemeChange
 						</Text>
 					</Center>
 				</Layout>

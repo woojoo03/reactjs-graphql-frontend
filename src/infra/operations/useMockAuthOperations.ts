@@ -3,6 +3,8 @@ import { authStore, userStore } from '@/infra/stores/authStore';
 import { User } from '@/types/models/User';
 import storage from '@/utils/storage';
 import useUserContext from '@/hooks/useUserContext';
+import useSettingContext from '@/hooks/useSettingContext';
+import { useEffect } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -17,6 +19,8 @@ export const useMockAuthOperations: () => {
 	loading: boolean;
 	mutations: Mutations;
 } = () => {
+	const settingContext = useSettingContext();
+	console.log('useMockAuthOperations : useSettingContext :', settingContext);
 	const userContext = useUserContext();
 	console.log('useMockAuthOperations : useUserContext :', userContext);
 
@@ -61,6 +65,15 @@ export const useMockAuthOperations: () => {
 			nickname: user.nickName,
 		});
 	}
+
+	useEffect(() => {
+		console.log('++++++++++++++++++++++++++++++');
+		console.log(typeof settingContext.toggleTheme);
+		console.log('++++++++++++++++++++++++++++++');
+		if (typeof settingContext.toggleTheme === 'function') {
+			settingContext.toggleTheme();
+		}
+	}, []);
 
 	const updateTokenByLogin = async (args: MutationUpdateTokenByLoginArgs) => {
 		console.log('updateTokenByLogin : args :', args);

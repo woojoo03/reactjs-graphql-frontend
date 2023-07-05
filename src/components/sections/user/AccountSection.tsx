@@ -7,6 +7,9 @@ import { ChangePassword, SignOut } from '@/types/async';
 import useCustomToast from '@/hooks/useCustomToast';
 import useUserContext from '@/hooks/useUserContext';
 import { Link } from 'react-router-dom';
+import useSettingContext from '@/hooks/useSettingContext';
+import { useReactiveVar } from '@apollo/client';
+import { userStore } from '@/infra/stores/authStore';
 
 // ----------------------------------------------------------------------
 
@@ -76,8 +79,12 @@ type Props = {
 
 export const AccountSection: React.FC<Props> = ({ id, actions, error }) => {
 	const { models, operations } = useAccount({ id, actions });
+	const setting = useSettingContext();
+	console.log('AccountSection : useSettingContext :', setting);
 	const userContext = useUserContext();
 	console.log('AccountSection : useUserContext :', userContext);
+	const userInfo = useReactiveVar(userStore);
+	console.log('AccountSection : useReactiveVar :', userInfo);
 
 	return (
 		<ThreadLayout page="Account">
@@ -92,6 +99,10 @@ export const AccountSection: React.FC<Props> = ({ id, actions, error }) => {
 				<Center>
 					<Text display={'inline-block'} cursor="pointer" onClick={operations.handleSignOut}>
 						Sign out
+					</Text>
+					<div>&nbsp;</div>
+					<Text cursor={'pointer'} mb={theme.m.sm} borderBottom={theme.border} onClick={setting.toggleTheme}>
+						ThemeChange
 					</Text>
 				</Center>
 			</Box>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import reactLogo from '@/assets/images/react.svg';
 import { useReactiveVar } from '@apollo/client';
 import { authStore } from '@/infra/stores/authStore';
+import useSettingContext from '@/hooks/useSettingContext';
 
 const useMain = () => {
 	const [count, setCount] = useState(0);
@@ -27,6 +28,8 @@ type Props = {
 
 export const MainSection: React.FC<Props> = ({ error }) => {
 	const { models, operations } = useMain();
+	const setting = useSettingContext();
+	console.log('MainSection : useSettingContext :', setting);
 
 	const loginId = useReactiveVar(authStore);
 	console.log('MainSection : useReactiveVar :', loginId);
