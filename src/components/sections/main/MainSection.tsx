@@ -26,8 +26,10 @@ type Props = {
 };
 
 export const MainSection: React.FC<Props> = ({ error }) => {
-	const loginId = useReactiveVar(authStore);
 	const { models, operations } = useMain();
+
+	const loginId = useReactiveVar(authStore);
+	console.log('MainSection : useReactiveVar :', loginId);
 
 	if (error) return <div>Error !!!</div>;
 

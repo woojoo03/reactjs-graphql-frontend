@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { Button, Center, Layout, Divider, VStack, Text } from '@/components/elements';
 import { Form } from '@/components/form';
 import { theme } from '@/utils/theme';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Login } from '@/types/async';
 import useSettingContext from '@/hooks/useSettingContext';
 
@@ -43,8 +43,7 @@ const useLogin = ({ actions }: Input) => {
 		await actions.login({
 			...state,
 		});
-		//window.location.reload();
-		navigate('/profile');
+		window.location.reload();
 	}, [state, actions]);
 
 	const handleSignUp = useCallback(() => {
@@ -65,15 +64,16 @@ type Props = {
 };
 
 export const LoginSection: React.FC<Props> = ({ actions, error }) => {
-	const setting = useSettingContext();
 	const { models, operations } = useLogin({ actions });
-
-	console.log('====>', setting);
+	const setting = useSettingContext();
+	console.log('LoginSection : useSettingContext :', setting);
 
 	return (
 		<Center h={theme.h.full}>
 			<VStack mb={100} w={theme.w.mobile}>
-				<Text fontSize={theme.fs.h3}>Login</Text>
+				<Text fontSize={theme.fs.h3}>
+					<Link to="/">Login</Link>
+				</Text>
 				<Layout borderRadius={theme.borderRadius.md} border={theme.border}>
 					<Form list={models.list} onChange={operations.handleFormInput} values={models.state} error={error} />
 					<Button w={'100%'} mb={theme.m.sm} onClick={operations.handleLogin}>

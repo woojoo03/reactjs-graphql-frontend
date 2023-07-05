@@ -2,8 +2,7 @@ import { MutationCreateUserArgs, MutationUpdateTokenByLoginArgs, MutationUpdateT
 import { authStore, userStore } from '@/infra/stores/authStore';
 import { User } from '@/types/models/User';
 import storage from '@/utils/storage';
-//import { useReactiveVar } from '@apollo/client';
-//import { useEffect } from 'react';
+import useUserContext from '@/hooks/useUserContext';
 
 type Mutations = {
 	updateTokenByLogin: (args: MutationUpdateTokenByLoginArgs) => Promise<void>;
@@ -16,12 +15,8 @@ export const useMockAuthOperations: () => {
 	loading: boolean;
 	mutations: Mutations;
 } = () => {
-	// const userInfo = useReactiveVar(userStore);
-	// console.log('userInfo ----->', userInfo);
-	// useEffect(() => {
-	// 	// loginId 값이 변경될 때마다 실행되는 로직을 작성합니다.
-	// 	console.log('loginId이 변경되었습니다:', userInfo);
-	// }, [userInfo]);
+	const userContext = useUserContext();
+	console.log('useMockAuthOperations : useUserContext :', userContext);
 
 	// Token 값으로 유저 체크..
 	let user;

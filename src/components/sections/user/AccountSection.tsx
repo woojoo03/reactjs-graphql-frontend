@@ -6,6 +6,7 @@ import { Form } from '@/components/form';
 import { ChangePassword, SignOut } from '@/types/async';
 import useCustomToast from '@/hooks/useCustomToast';
 import useUserContext from '@/hooks/useUserContext';
+import { Link } from 'react-router-dom';
 
 type Input = {
 	id: number;
@@ -71,12 +72,14 @@ type Props = {
 
 export const AccountSection: React.FC<Props> = ({ id, actions, error }) => {
 	const { models, operations } = useAccount({ id, actions });
-	const user = useUserContext();
-
-	console.log('AccountSection : user :', user);
+	const userContext = useUserContext();
+	console.log('AccountSection : useUserContext :', userContext);
 
 	return (
 		<ThreadLayout page="Account">
+			<Text fontSize={theme.fs.h3}>
+				<Link to="/">Account</Link>
+			</Text>
 			<Box w={theme.w.mobile}>
 				<Form error={error} list={models.list} onChange={operations.handleFormInput} values={models.state} />
 				<Button onClick={operations.handleUpdatePassword} w={'100%'} mb={theme.m.md}>

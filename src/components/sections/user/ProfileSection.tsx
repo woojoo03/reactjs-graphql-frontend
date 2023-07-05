@@ -8,6 +8,7 @@ import { PostOnThread } from '@/types/async';
 import { User } from '@/types/models';
 import { userStore } from '@/infra/stores/authStore';
 import { useReactiveVar } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 type Props = {
 	user: User;
@@ -18,12 +19,15 @@ type Props = {
 
 export const ProfileSection: React.FC<Props> = ({ user, actions }) => {
 	const userInfo = useReactiveVar(userStore);
-	console.log('ProfileSection : userInfo :', userInfo);
+	console.log('ProfileSection : useReactiveVar :', userInfo);
 
 	return (
 		<ThreadLayout page="Profile">
 			<Box pt={theme.m.md}>
 				<VStack spacing={theme.m.md}>
+					<Text fontSize={theme.fs.h3}>
+						<Link to="/">Profile</Link>
+					</Text>
 					<Text textAlign="center">Write a post to your thread</Text>
 					<UserInfoList user={user} /> <Divider />
 					<Posts posts={user.posts} />

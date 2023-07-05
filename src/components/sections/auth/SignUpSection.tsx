@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { Button, Center, Layout, Divider, VStack, Text } from '@/components/elements';
 import { Form } from '@/components/form';
 import { theme } from '@/utils/theme';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SignUp } from '@/types/async';
 
 type Input = {
@@ -83,7 +83,9 @@ export const SignUpSection: React.FC<Props> = ({ actions, error }) => {
 	return (
 		<Center h={theme.h.full}>
 			<VStack mb={100} w={theme.w.mobile}>
-				<Text fontSize={theme.fs.h3}>SignUp</Text>
+				<Text fontSize={theme.fs.h3}>
+					<Link to="/">SignUp</Link>
+				</Text>
 				<Layout borderRadius={theme.borderRadius.md} border={theme.border}>
 					<Form list={models.list} values={models.state} onChange={operations.handleFormInput} error={error} />
 					<Button w={'100%'} mb={theme.m.sm} onClick={operations.handleRegister}>

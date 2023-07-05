@@ -23,6 +23,7 @@ export interface Pages {
 const publicPages = ['/login', '/join'];
 
 export const getRouter = (pages: Pages) => {
+	console.log('getRouter --------------------------------------------');
 	const routes: IRoute[] = [];
 
 	for (const path of Object.keys(pages)) {

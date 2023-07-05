@@ -14,7 +14,7 @@ type UserContextProps = {
 	accessToken: string;
 	refreshToken: string;
 	// Actions
-	onUpdate?: () => void;
+	update?: (userInfo: UserInfo) => void;
 };
 
 const UserContext = createContext<UserContextProps>({
@@ -25,11 +25,22 @@ const UserContext = createContext<UserContextProps>({
 	accessToken: '',
 	refreshToken: '',
 	// Actions
-	onUpdate: () => {},
+	update: (userInfo: UserInfo) => {
+		console.log(userInfo);
+	},
 });
 
 type UsersProviderProps = {
 	children: ReactNode;
+};
+
+export type UserInfo = {
+	id?: string;
+	nickname?: string;
+	role?: string;
+	level?: number;
+	accessToken?: string;
+	refreshToken?: string;
 };
 
 function UserProvider({ children }: UsersProviderProps) {
@@ -42,9 +53,14 @@ function UserProvider({ children }: UsersProviderProps) {
 		refreshToken: '',
 	});
 
-	const onUpdate = () => {
+	const handleUpdate = (userInfo: UserInfo) => {
 		setUsers({
-			...user,
+			id: userInfo.id ?? '',
+			nickname: userInfo.nickname ?? 'Guest',
+			role: userInfo.role ?? 'User',
+			level: userInfo.level ?? 0,
+			accessToken: userInfo.accessToken ?? '',
+			refreshToken: userInfo.refreshToken ?? '',
 		});
 	};
 
@@ -58,7 +74,7 @@ function UserProvider({ children }: UsersProviderProps) {
 				accessToken: user?.accessToken ?? '',
 				refreshToken: user?.refreshToken ?? '',
 				// Actions
-				onUpdate,
+				update: handleUpdate,
 			}}
 		>
 			{children}
